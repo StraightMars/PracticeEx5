@@ -24,9 +24,8 @@ namespace Заполнение_по_диагонали
          *       пройти вниз        *                 
          * while (не все элементы заполнены) 
          */
-
         //Ввод натурального числа
-        private static int InputIntNNumber()
+        private static int ScanNatNumber()
         {
             bool ok;
             int number;
@@ -40,19 +39,15 @@ namespace Заполнение_по_диагонали
                     ok = false;
                 }
             } while (!ok);
-
             return number;
         }
-
-
-        private static void OutputArray(int[,] arr)
+        private static void ShowArr(int[,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
                     Console.Write("{0,4}", arr[i, j]);
-
                 }
                 Console.WriteLine();
             }
@@ -67,10 +62,8 @@ namespace Заполнение_по_диагонали
             else if ((x == arr.GetLength(0) - 1) && (y < arr.GetLength(1) - 1)) y = y + 1;
             else if ((x == 0) && (y == arr.GetLength(1) - 1)) x = x + 1;
             else if ((x == arr.GetLength(0) - 1) && (y == 0)) x = x + 1;
-
         }
-
-        private static void UpDiagonal (int [,] arr, ref int x, ref int y, ref int First)
+        private static void UpDiagonal(int [,] arr, ref int x, ref int y, ref int First)
         {
             do
             {
@@ -82,7 +75,6 @@ namespace Заполнение_по_диагонали
             x++;
             y--;
         }
-
         private static void DownDiagonal(int[,] arr, ref int x, ref int y, ref int First)
         {
             do
@@ -94,24 +86,17 @@ namespace Заполнение_по_диагонали
             } while ((y != -1) && (x != arr.GetLength(0)));
             y++;
             x--;
-
         }
-
-
         static void Main(string[] args)
         {
             Console.WriteLine("Введите количество строк массива ");
-            int x = InputIntNNumber();
-
+            int x = ScanNatNumber();
             Console.WriteLine("Введите количество столбцов массива ");
-            int y = InputIntNNumber();
-
+            int y = ScanNatNumber();
             int[,] arr = new int[x, y];
             int n = x * y;
-
             if (x != 1)
             {
-
                 arr[0, 0] = 1;
                 arr[x - 1, y - 1] = n;
                 int k1 = 0;
@@ -131,7 +116,7 @@ namespace Заполнение_по_диагонали
                     arr[0, i] = i + 1;
             }
 
-            OutputArray(arr);
+            ShowArr(arr);
 
         }
     }
