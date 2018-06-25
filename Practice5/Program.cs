@@ -8,23 +8,6 @@ namespace Заполнение_по_диагонали
 {
     class Program
     {
-        /* 
-         * do
-         * {
-         * Спуститься вниз на 1
-         * Пройти по диагонали вверх
-         * Если можно
-         *      пройти вправо
-         *  Иначе 
-         *       пройти вниз
-         * Пройти вниз
-         * Если можно 
-         *       пройти вправо
-         *   Иначе
-         *       пройти вниз        *                 
-         * while (не все элементы заполнены) 
-         */
-        //Ввод натурального числа
         private static int ScanNatNumber()
         {
             bool ok;
@@ -41,19 +24,18 @@ namespace Заполнение_по_диагонали
             } while (!ok);
             return number;
         }
-        private static void ShowArr(int[,] arr)
+        private static void ShowArr(double[,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    Console.Write("{0,4}", arr[i, j]);
+                    Console.Write("{0,6}", arr[i, j]);
                 }
                 Console.WriteLine();
             }
-
         }
-        private static void RightOrDown(int[,] arr, ref int x, ref int y, ref int First)
+        private static void RightOrDown(double[,] arr, ref int x, ref int y, ref double First)
         {
             if ((x == 0) && (y == 0)) x = x + 1;
             else if ((x == 0) && (y < arr.GetLength(1) - 1)) y = y + 1;
@@ -63,7 +45,7 @@ namespace Заполнение_по_диагонали
             else if ((x == 0) && (y == arr.GetLength(1) - 1)) x = x + 1;
             else if ((x == arr.GetLength(0) - 1) && (y == 0)) x = x + 1;
         }
-        private static void UpDiagonal(int [,] arr, ref int x, ref int y, ref int First)
+        private static void UpDiagonal(double[,] arr, ref int x, ref int y, ref double First)
         {
             do
             {
@@ -75,7 +57,7 @@ namespace Заполнение_по_диагонали
             x++;
             y--;
         }
-        private static void DownDiagonal(int[,] arr, ref int x, ref int y, ref int First)
+        private static void DownDiagonal(double[,] arr, ref int x, ref int y, ref double First)
         {
             do
             {
@@ -93,15 +75,15 @@ namespace Заполнение_по_диагонали
             int x = ScanNatNumber();
             Console.WriteLine("Введите количество столбцов массива ");
             int y = ScanNatNumber();
-            int[,] arr = new int[x, y];
+            double[,] arr = new double[x, y];
             int n = x * y;
             if (x != 1)
             {
-                arr[0, 0] = 1;
+                arr[0, 0] = 0.5;
                 arr[x - 1, y - 1] = n;
                 int k1 = 0;
                 int k2 = 0;
-                int First = 2;
+                double First = 1.5;
                 do
                 {
                     RightOrDown(arr, ref k1, ref k2, ref First);
@@ -115,9 +97,7 @@ namespace Заполнение_по_диагонали
                 for (int i = 0; i < arr.GetLength(1); i++)
                     arr[0, i] = i + 1;
             }
-
             ShowArr(arr);
-
         }
     }
 }
